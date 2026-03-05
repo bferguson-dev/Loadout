@@ -1,0 +1,12 @@
+# Claude Code local settings (machine-specific, not for source control)
+.claude/
+
+# PowerShell module cache
+PSGetModuleInfo.xml
+
+# Temp / log files
+*.log
+Loadout-*.tmp
+
+# Windows "Mark of the Web" ADS files copied into Linux/WSL filesystems
+*:Zone.Identifier

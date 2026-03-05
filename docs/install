@@ -1,0 +1,4 @@
+# Loadout install shim -- served at https://bferguson-dev.github.io/Loadout/install
+# This file forwards irm requests to the canonical bootstrap.ps1 in the repo.
+# The GitHub Pages URL is permanent and safe to share; the actual logic lives in bootstrap.ps1.
+Invoke-RestMethod 'https://raw.githubusercontent.com/bferguson-dev/Loadout/main/bootstrap.ps1' | Invoke-Expression
