@@ -63,7 +63,7 @@ jobs:
       - name: Validate manifest before release
         run: |
           pip install jsonschema
-          python .github/scripts/validate-manifest.py
+          RUN_GITLEAKS=0 RUN_GIT_SECRETS_CACHED=0 ./check.sh
 
       - name: Create GitHub Release
         env:

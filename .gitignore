@@ -1,6 +1,11 @@
 # Claude Code local settings (machine-specific, not for source control)
 .claude/
 
+# Python cache
+__pycache__/
+.pytest_cache/
+*.pyc
+
 # PowerShell module cache
 PSGetModuleInfo.xml
 

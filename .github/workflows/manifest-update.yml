@@ -23,7 +23,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install dependencies
-        run: pip install jsonpath-ng
+        run: pip install jsonpath-ng jsonschema
 
       - name: Check versions and validate IDs
         id: check
@@ -34,8 +34,7 @@ jobs:
       - name: Validate updated manifest
         if: steps.check.outputs.manifest_changed == 'true'
         run: |
-          pip install jsonschema
-          python .github/scripts/validate-manifest.py
+          RUN_GITLEAKS=0 RUN_GIT_SECRETS_CACHED=0 ./check.sh
 
       - name: Commit updated manifest
         if: steps.check.outputs.manifest_changed == 'true'

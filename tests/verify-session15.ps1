@@ -10,6 +10,17 @@
 param()
 
 $ErrorActionPreference = 'Stop'
+
+function Get-PowerShellCommand {
+    if (Get-Command powershell -ErrorAction SilentlyContinue) {
+        return 'powershell'
+    }
+    if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+        return 'pwsh'
+    }
+
+    throw "Neither 'powershell' nor 'pwsh' is available on PATH."
+}
 $repoRoot    = Split-Path $PSScriptRoot -Parent
 $loadoutPs1  = Join-Path $repoRoot 'src\Loadout.ps1'
 $guiXaml     = Join-Path $repoRoot 'src\GUI.xaml'
@@ -35,7 +46,8 @@ function Assert {
 Write-Host ''
 Write-Host '--- Parse check ---'
 try {
-    & powershell -ExecutionPolicy Bypass -File $parseCheck
+    $psCommand = Get-PowerShellCommand
+    & $psCommand -ExecutionPolicy Bypass -File $parseCheck
     Assert $true 'parse-check.ps1 passed'
 } catch {
     Assert $false "parse-check.ps1 failed: $_"

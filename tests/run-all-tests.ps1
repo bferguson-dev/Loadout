@@ -15,6 +15,17 @@ param()
 
 $ErrorActionPreference = 'Stop'
 
+function Get-PowerShellCommand {
+    if (Get-Command powershell -ErrorAction SilentlyContinue) {
+        return 'powershell'
+    }
+    if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+        return 'pwsh'
+    }
+
+    throw "Neither 'powershell' nor 'pwsh' is available on PATH."
+}
+
 # Ensure Windows-style env vars exist when running under pwsh on Linux/WSL.
 if ([string]::IsNullOrWhiteSpace($env:TEMP)) {
     $env:TEMP = [System.IO.Path]::GetTempPath()
@@ -27,6 +38,7 @@ if ([string]::IsNullOrWhiteSpace($env:APPDATA)) {
 }
 
 $testsDir = $PSScriptRoot
+$psCommand = Get-PowerShellCommand
 
 $suites = @(
     'parse-check.ps1',
@@ -68,7 +80,7 @@ foreach ($suite in $suites) {
 
     $exitCode = 0
     try {
-        & powershell -ExecutionPolicy Bypass -File $path
+        & $psCommand -ExecutionPolicy Bypass -File $path
         $exitCode = $LASTEXITCODE
     } catch {
         Write-Host "  ERROR: suite threw: $_"

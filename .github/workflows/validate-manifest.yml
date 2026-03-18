@@ -1,4 +1,4 @@
-name: Validate Manifest
+name: Quality Gate
 
 on:
   push:
@@ -6,12 +6,14 @@ on:
 
 jobs:
   validate:
-    name: Validate manifest.json
+    name: Run repository quality gate
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,5 +23,13 @@ jobs:
       - name: Install dependencies
         run: pip install jsonschema
 
-      - name: Validate schema and structure
-        run: python .github/scripts/validate-manifest.py
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run local quality gate
+        env:
+          RUN_GITLEAKS: "0"
+          RUN_GIT_SECRETS_CACHED: "0"
+        run: ./check.sh
