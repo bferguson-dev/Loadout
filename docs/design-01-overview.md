@@ -1,17 +1,17 @@
 ﻿# LOADOUT — Full Project Design Document
 **Infrastructure Workstation Setup Tool**
 **GitHub: github.com/bferguson-dev/Loadout**
-**Author: bferguson-dev**
 
 ---
 
-## HOW TO USE THIS DOCUMENT (READ FIRST — FOR CLAUDE CODE INSTANCES)
+## HOW TO USE THIS DOCUMENT
 
 This is the single source of truth for the Loadout project. Every design decision is recorded here. Do not re-litigate decisions already made. Build what is described. If something is unclear, ask — do not assume.
 
 ### Chat/Session Startup Table
 
-When starting a new build session, tell Claude Code which component you are building. Use this table to know which sections to read and where to start.
+When starting a new build session, identify which component you are building.
+Use this table to know which sections to read and where to start.
 
 | Session # | Component | Read These Sections | Start Here |
 |---|---|---|---|
@@ -48,8 +48,10 @@ Loadout is a portable, self-updating Windows infrastructure workstation setup to
 ### Purpose
 
 - Move quickly from workstation to workstation with a consistent tool environment
-- Portfolio project demonstrating real PowerShell and infrastructure engineering skills
-- Demonstrates: GUI development in PowerShell, package management, CI/CD, declarative state management, reboot-resume logic, offline deployment packaging
+- Provide a real PowerShell and infrastructure engineering reference
+  implementation
+- Cover GUI development in PowerShell, package management, CI/CD, declarative
+  state management, reboot-resume logic, and offline deployment packaging
 
 ### Key Design Principles
 
@@ -64,9 +66,8 @@ Loadout is a portable, self-updating Windows infrastructure workstation setup to
 
 ## SECTION 2: REPOSITORY STRUCTURE
 
-### GitHub Account
+### GitHub Repository
 
-- Username: bferguson-dev
 - Repository: https://github.com/bferguson-dev/Loadout
 - License: MIT
 - Versioning: Semantic versioning — Major.Minor.Patch starting at v1.0.0

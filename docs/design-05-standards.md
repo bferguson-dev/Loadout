@@ -63,7 +63,10 @@ These rules were discovered during implementation and apply to every .ps1 file i
 
 ### ASCII-Only Rule for .ps1 Files
 
-PowerShell 5.1 reads .ps1 script files as ANSI (Windows-1252) by default when no UTF-8 BOM is present. The Write tool (used by Claude Code) writes UTF-8 without BOM. Multi-byte UTF-8 sequences for non-ASCII characters are misinterpreted character-by-character under ANSI:
+PowerShell 5.1 reads .ps1 script files as ANSI (Windows-1252) by default when
+no UTF-8 BOM is present. Some automated editing tools write UTF-8 without BOM.
+Multi-byte UTF-8 sequences for non-ASCII characters are misinterpreted
+character-by-character under ANSI:
 
 - The em dash (U+2014, UTF-8: E2 80 94) is read as three ANSI chars. Byte 0x94 maps to a right double-quote in Windows-1252, which silently closes any open string literal and breaks parsing with a misleading "Missing closing '}'" error.
 - Box-drawing characters (used in ASCII banners) have the same problem — many contain 0x94 bytes.

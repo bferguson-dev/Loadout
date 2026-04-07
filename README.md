@@ -1,6 +1,10 @@
-*[!] This project has not been tested in a production environment. You are
-responsible for validating, understanding, and testing it in your own
-environment before any real-world use. [!]*
+*[!] This project is provided as-is, without warranties or guarantees of any
+kind, and has not been validated in a production environment unless explicitly
+stated otherwise. You are solely responsible for evaluating, testing, securing,
+and operating it safely in your environment and for verifying compliance with
+any legal, regulatory, or contractual requirements. By using this project, you
+accept all risk, and the authors and contributors assume no liability for any
+loss, damage, outage, misuse, or other consequences arising from its use. [!]*
 
 # Loadout
 
@@ -179,7 +183,7 @@ The gate is intended to prove more than syntax:
 - JSON and Markdown sanity checks
 - shell syntax checks
 - optional secret scanning with `gitleaks`
-- optional staged secret scanning with `git-secrets`
+- optional staged secret scanning with `gitleaks`
 
 If a tool is unavailable, `check.sh` reports that as a skip or warning rather
 than a false pass.
